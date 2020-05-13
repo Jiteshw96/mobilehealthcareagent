@@ -14,6 +14,7 @@ import com.atos.mobilehealthcareagent.database.AppDatabase
 import com.atos.mobilehealthcareagent.database.User
 import com.atos.mobilehealthcareagent.databinding.FragmentRegistrationBasicInfoBinding
 import com.atos.mobilehealthcareagent.presenter.PersonalDataPresenter
+import kotlinx.android.synthetic.main.fragment_registration_basic_info.*
 
 
 /**
@@ -24,6 +25,7 @@ class RegistrationBasicInfo : Fragment(),
 
     lateinit var mPersonalDataPresenter: PersonalDataPresenter
     lateinit var db: AppDatabase
+    var mUser:User=User()
 
     /**
      * Call after on attach method
@@ -45,6 +47,8 @@ class RegistrationBasicInfo : Fragment(),
         binding?.registrationBasicInfoFragment = this
 
         binding?.view = view
+
+        binding?.user=mUser
 
         return view
 
@@ -72,7 +76,10 @@ class RegistrationBasicInfo : Fragment(),
      * @param view object of android.view.View
      */
     fun onClickSaveButton(view: View) {
-        mPersonalDataPresenter.buttonClickAddBasecDataToDatabase(db, User())
+        mPersonalDataPresenter.buttonClickAddBasecDataToDatabase(db, mUser)
+       // Log.e("FirstName", edt_first_name.editText?.text.toString())
+
+
     }
 
 

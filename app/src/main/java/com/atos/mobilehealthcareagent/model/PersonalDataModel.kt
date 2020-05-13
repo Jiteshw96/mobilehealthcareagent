@@ -13,18 +13,12 @@ import java.util.*
 class PersonalDataModel :
     UserBasicDatabaseInterface.UserBasicDataModelInterface {
 
-    override suspend fun addUserBasicData(db: AppDatabase, user: User):LongArray? {
-        var indexNumber_user_basic_info_DB:LongArray?=null
+    override suspend fun addUserBasicData(db: AppDatabase, user: User): LongArray? {
+        var indexNumber_user_basic_info_DB: LongArray? = null
+        indexNumber_user_basic_info_DB = db.userDao()?.insertAll(user)
+        Log.e("Value", indexNumber_user_basic_info_DB.toString())
 
-            val user = User()
-            user.firstName = "Rajdeep"
-            user.lastName = "Sarker"
-            user.age = 27
-
-            indexNumber_user_basic_info_DB = db.userDao()?.insertAll(user)
-            Log.e("Value", indexNumber_user_basic_info_DB.toString())
-
-
+        Log.e("Value", db.userDao()?.countUsers().toString())
         return indexNumber_user_basic_info_DB
     }
 

@@ -33,9 +33,9 @@ class PersonalDataPresenter :
 
 
     override fun buttonClickAddBasecDataToDatabase(db: AppDatabase, user: User) {
-        CoroutineScope(Dispatchers.IO).launch{
-        var value=mPersonalDataModel.addUserBasicData(db, user)
-        Log.e("PersonalValueInserted", value.toString())
+        CoroutineScope(Dispatchers.IO).launch {
+            var value = mPersonalDataModel.addUserBasicData(db, user)
+            Log.e("PersonalValueInserted", value.toString())
         }
 
     }
