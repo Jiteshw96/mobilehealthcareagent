@@ -22,9 +22,22 @@ class PersonalDataModel :
         return indexNumber_user_basic_info_DB
     }
 
-    override suspend fun getUserBasicData() {
+    override suspend fun getUserBasicData(db: AppDatabase): User? {
 
         //  return ArrayList<User>()
+
+        val userList = db.userDao()?.all
+        var user: User? = null
+
+        when (userList?.size) {
+            1 -> {
+                user = userList?.get(0)
+            }
+            0 -> {
+                user = null
+            }
+        }
+        return user
     }
 
 }

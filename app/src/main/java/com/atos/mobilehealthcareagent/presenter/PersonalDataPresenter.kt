@@ -36,6 +36,18 @@ class PersonalDataPresenter :
         CoroutineScope(Dispatchers.IO).launch {
             var value = mPersonalDataModel.addUserBasicData(db, user)
             Log.e("PersonalValueInserted", value.toString())
+            mViewDatabase.userBasicInfoPresentIntoDB(true)
+        }
+
+    }
+
+    override fun getInfoBasicDataPresentOrNotIntoDB(db: AppDatabase) {
+        CoroutineScope(Dispatchers.IO).launch {
+            var value = mPersonalDataModel.getUserBasicData(db)
+            if (value != null)
+                mViewDatabase.userBasicInfoPresentIntoDB(true)
+            else
+                mViewDatabase.userBasicInfoPresentIntoDB(false)
         }
 
     }

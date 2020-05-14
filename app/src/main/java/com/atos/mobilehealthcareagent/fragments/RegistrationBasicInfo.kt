@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.atos.mobilehealthcareagent.MainActivity
 import com.atos.mobilehealthcareagent.R
 import com.atos.mobilehealthcareagent.contract.UserBasicDatabaseInterface
 import com.atos.mobilehealthcareagent.database.AppDatabase
@@ -25,7 +26,9 @@ class RegistrationBasicInfo : Fragment(),
 
     lateinit var mPersonalDataPresenter: PersonalDataPresenter
     lateinit var db: AppDatabase
-    var mUser:User=User()
+    var mUser: User = User()
+    var userInformationSavedIntoDataBase = false
+    var binding: FragmentRegistrationBasicInfoBinding? = null
 
     /**
      * Call after on attach method
@@ -42,13 +45,17 @@ class RegistrationBasicInfo : Fragment(),
         val view: View =
             inflater.inflate(R.layout.fragment_registration_basic_info, container, false)
 
-        val binding: FragmentRegistrationBasicInfoBinding? = DataBindingUtil.bind(view)
+        binding = DataBindingUtil.bind(view)
 
         binding?.registrationBasicInfoFragment = this
 
         binding?.view = view
 
-        binding?.user=mUser
+        binding?.user = mUser
+
+        binding?.mainactivity = activity as MainActivity?
+
+        binding?.userInformationSavedIntoDataBase = userInformationSavedIntoDataBase
 
         return view
 
@@ -61,13 +68,17 @@ class RegistrationBasicInfo : Fragment(),
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mPersonalDataPresenter = PersonalDataPresenter(this)
+        checkInfoBasicDataPresentOrNotIntoDB()
     }
+
 
     override fun initUserFitnessDatabase() {
 
         db = AppDatabase.getAppDatabase(activity!!.applicationContext) as AppDatabase
 
         Log.e("Database Created", "Ready to Read/Write")
+
+
     }
 
 
@@ -77,9 +88,19 @@ class RegistrationBasicInfo : Fragment(),
      */
     fun onClickSaveButton(view: View) {
         mPersonalDataPresenter.buttonClickAddBasecDataToDatabase(db, mUser)
-       // Log.e("FirstName", edt_first_name.editText?.text.toString())
+        // Log.e("FirstName", edt_first_name.editText?.text.toString())
 
 
+    }
+
+    override fun userBasicInfoPresentIntoDB(flag: Boolean) {
+        userInformationSavedIntoDataBase = flag
+        binding?.userInformationSavedIntoDataBase = userInformationSavedIntoDataBase
+        binding?.invalidateAll()
+    }
+
+    fun checkInfoBasicDataPresentOrNotIntoDB() {
+        mPersonalDataPresenter.getInfoBasicDataPresentOrNotIntoDB(db)
     }
 
 
