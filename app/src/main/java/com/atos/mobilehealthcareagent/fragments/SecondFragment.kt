@@ -63,7 +63,7 @@ class SecondFragment : Fragment(), UserFitnessActivityViewInterface {
 
             .build()
 
-        val request = PeriodicWorkRequestBuilder<ServiceInputToDB>(15, TimeUnit.MINUTES)
+        val request = PeriodicWorkRequestBuilder<ServiceInputToDB>(15, TimeUnit.MINUTES,5,TimeUnit.MINUTES)
                 .setConstraints(constraints)
                 .addTag("mobilehealthcareagent")
                 .build()

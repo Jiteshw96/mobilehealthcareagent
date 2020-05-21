@@ -80,6 +80,8 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
 
         readFitDataApi = ReadFitDataApi(applicationContext,fitnessOptions)
 
+        Log.i("DO Work Method","Fun called")
+
 
      /*   //GetCalories Func Called
         CoroutineScope(Dispatchers.IO).launch {
@@ -112,9 +114,6 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
         //TimeInterval Func Called
         CoroutineScope(Dispatchers.IO).launch {
 
-
-
-
                 val task:Task<DataReadResponse> =  readFitDataApi.getStepsTimeInterval(
                     GetDateDetailsStartEndTime.DateStartEnd(
                         mStartDate, mEndDate,
@@ -130,22 +129,6 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
                     }
 
                 }
-
-
-
-                var user = UserFitnessData()
-                user.firstName = "John"
-                user.age = 30
-                user.lastName = "wick"
-                user.steps = "2200"
-                user.timestamp = "2020"
-                user.uid = 123
-
-                db.userDao()?.insertFitnessData(user)
-                db.userDao()?.fitnessData
-
-
-
         }
         return Result.success(data1)
     }
@@ -197,10 +180,26 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
 
             if(data.isNotEmpty()){
                 displayNotification("Steps", data.get(data.size-1))
+
             }else{
                 displayNotification("Steps", "No Record")
             }
         }
+
+        var user = UserFitnessData()
+        user.firstName = "John"
+        user.age = 30
+        user.lastName = "wick"
+        user.timestamp = "2020"
+       // user.steps = data?.get(data.size-1) ?: "2200"
+        user.steps = "2200"
+        user.uid = 11
+        db.userDao()?.insertFitnessData(user)
+        db.userDao()?.fitnessData?.get(0)?.steps
+
+
+        Log.i("Database Data" , db.userDao()?.fitnessData?.get(0)?.steps)
+        Log.i("Database Data Size" , db.userDao()?.fitnessData?.size.toString())
     }
 
    /* fun stepsDataParsing(dataReadResult: DataReadResponse?){
