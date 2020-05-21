@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1026119436882",
+    "firebase_url": "https://apk-mobilehealthcareagent.firebaseio.com",
+    "project_id": "apk-mobilehealthcareagent",
+    "storage_bucket": "apk-mobilehealthcareagent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026119436882:android:9a27974c38ca161aebed8b",
+        "android_client_info": {
+          "package_name": "com.atos.mobilehealthcareagent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026119436882-j6d9vk0pnlnccn3k0fa17ehmkoo5svhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiESINv6aPGqUzfvXDl_mV9nSh9szPOA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026119436882-j6d9vk0pnlnccn3k0fa17ehmkoo5svhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
