@@ -22,4 +22,10 @@ interface UserDao {
 
     @Delete
     fun delete(user: User?)
+
+    @Insert
+    fun insertFitnessData(vararg users: UserFitnessData?): LongArray?
+
+    @get:Query("SELECT * FROM user_fitness_data")
+    val fitnessData: List<UserFitnessData?>?
 }

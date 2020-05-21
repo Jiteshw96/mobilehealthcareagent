@@ -10,4 +10,11 @@
     <string name="age">Age</string>
     <string name="height">Height in centimeter</string>
     <string name="weight">Weight in kilogram</string>
+
+    <string name="action_autho">Authorization</string>
+    <string name="read_step_data">Read Data Today</string>
+    <string name="read_step_data_history_steps">Read Steps data History</string>
+    <string name="read_step_data_history_calorie">Read Calorie data History</string>
+    <string name="read_step_data_history_heartPoint">Read HeartPoint data History</string>
+    <string name="title_activity_history">HistoryActivity</string>
 </resources>
