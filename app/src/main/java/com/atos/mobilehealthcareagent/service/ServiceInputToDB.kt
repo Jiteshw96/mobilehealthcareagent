@@ -112,19 +112,26 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
         //TimeInterval Func Called
         CoroutineScope(Dispatchers.IO).launch {
 
-            async {
+
+
 
                 val task:Task<DataReadResponse> =  readFitDataApi.getStepsTimeInterval(
                     GetDateDetailsStartEndTime.DateStartEnd(
                         mStartDate, mEndDate,
                         mStartTimeInMili.time, mEndTimeInMili.time
                     )
-                ).continueWithTask{
-                    it.addOnSuccessListener{
-                        DataParsing(it.result,com.google.android.gms.fitness.data.Field.FIELD_STEPS)
+                )
+
+                task.addOnSuccessListener{
+                    CoroutineScope(Dispatchers.IO).launch {
+                        DataParsing(task.result,com.google.android.gms.fitness.data.Field.FIELD_STEPS)
                         LastSyncSharedPreferences().setLastSyncTime(mSeconds,applicationContext)
+
                     }
+
                 }
+
+
 
                 var user = UserFitnessData()
                 user.firstName = "John"
@@ -133,10 +140,12 @@ class ServiceInputToDB(context: Context, workerParams: WorkerParameters) :
                 user.steps = "2200"
                 user.timestamp = "2020"
                 user.uid = 123
+
                 db.userDao()?.insertFitnessData(user)
                 db.userDao()?.fitnessData
 
-            }.await()
+
+
         }
         return Result.success(data1)
     }
