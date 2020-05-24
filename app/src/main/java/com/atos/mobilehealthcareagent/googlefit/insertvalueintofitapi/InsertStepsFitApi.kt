@@ -92,7 +92,7 @@ class InsertStepsFitApi(cntx: Context, mFitnessOptions: FitnessOptions) {
             .build()
 
         // Create a data set
-        val stepCountDelta = 10
+        val stepCountDelta = steps
         return DataSet.builder(dataSourceStep)
             .add(
                 DataPoint.builder(dataSourceStep)
