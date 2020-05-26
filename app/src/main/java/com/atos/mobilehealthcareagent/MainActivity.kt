@@ -102,9 +102,6 @@ class MainActivity : AppCompatActivity() {
             LastSyncSharedPreferences().setLastSyncTime(mseconds,applicationContext)
         }
 
-
-
-
     }
 
     fun openSecondFragment(view: View) {
