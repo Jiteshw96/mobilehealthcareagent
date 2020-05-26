@@ -59,9 +59,9 @@ dependencies {
 
     implementation 'androidx.room:room-runtime:2.0.0'
     kapt 'androidx.room:room-compiler:2.0.0'
-
     implementation 'com.google.android.gms:play-services-fitness:18.0.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
 
     implementation 'com.google.android.material:material:1.2.0-alpha06'
 }
